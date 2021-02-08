@@ -15,7 +15,7 @@ public class Member {
     @Column(name = "member_id") //db에 있는 컬럼명
     private Long id;
 
-    private String username;
+    private String name;
 
     @Embedded
     private Address address;
