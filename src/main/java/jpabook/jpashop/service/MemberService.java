@@ -42,4 +42,11 @@ public class MemberService {
     public Member findOne(Long memberId){
         return memberRepository.findOne(memberId);
     }
+
+
+    @Transactional // 변경감지로 구현
+    public void update(Long id, String name) {
+        Member member = memberRepository.findOne(id);
+        member.setName(name); //영속상태의 객체이므로 자동으로 저장됨
+    }
 }
