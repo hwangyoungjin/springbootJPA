@@ -20,7 +20,7 @@ public class Order {
     @Column(name = "order_id") // DB에서의 컬럼명
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id") // DB에서의 FK 컬럼명
     private Member member;
 
