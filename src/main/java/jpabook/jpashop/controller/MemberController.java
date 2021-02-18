@@ -3,7 +3,9 @@ package jpabook.jpashop.controller;
 import jpabook.jpashop.model.Address;
 import jpabook.jpashop.model.Member;
 import jpabook.jpashop.service.MemberService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Controller
@@ -46,5 +49,17 @@ public class MemberController {
         List<Member> members = memberService.findMembers();
         model.addAttribute("members",members);
         return "members/memberList";
+    }
+
+    @Getter
+    @Setter
+    static class MemberForm {
+
+        @NotEmpty(message = "회원이름은 필수 입니다.")
+        private String name;
+
+        private String city;
+        private String street;
+        private String zipcode;
     }
 }
